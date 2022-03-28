@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/03/28 02:18:20 by gudias           ###   ########.fr        #
+#    Updated: 2022/03/28 16:05:46 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,13 @@ OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
 	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
 	@mkdir -p $(OBJSDIR) $(OBJSDIR)/utils
-	$(CC) $(CLFAGS) $(INCL) -I/usr/include -Imlx_linux -O3 -c $< -o $@
+	@$(CC) $(CLFAGS) $(INCL) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
-	$(CC) $(CFLAGS) $^ -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
+	@$(CC) $(CFLAGS) $^ -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $@
 	@echo "$(GREEN)--->./$@ is ready$(DEFAULT)"
 
 clean:
