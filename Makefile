@@ -6,19 +6,34 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/03/29 02:04:47 by gudias           ###   ########.fr        #
+#    Updated: 2022/03/29 19:07:52 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= so_long
 
-CC	= gcc
+CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror 
 INCL	= -I incs
-RM	= rm -f
+RM		= rm -f
 
 LIBFT	= libs/libft/libft.a
-MLX	= libs/mlx_linux/libmlx_Linux.a
+
+UNAME = uname -s
+
+ifeq ($(UNAME), Darwin)
+{
+	MLX		= libs/mlx_mac/libmlx.a
+	MLX_INC = -Ilibs/mlx_mac
+	MLX_FLG = -Llibs/mlx_mac -lmlx -framework OpenGL -framework AppKit
+}
+else ifeq ($(UNAME), Linux)
+{
+	MLX		= libs/mlx_linux/libmlx_Linux.a
+	MLX_INC	= -I/usr/include -Ilibs/mlx_linux -O3
+	MLX_FLG	= -Llibs/mlx_linux -lmlx_Linux -L/usr/lib -Ilibs/mlx_linux -lXext -lX11 -lm -lz
+}
+endif
 
 SRCSDIR	= srcs
 OBJSDIR	= objs
@@ -29,18 +44,19 @@ OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
 	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
-	@mkdir -p $(OBJSDIR) $(OBJSDIR)/utils
-	@$(CC) $(CLFAGS) $(INCL) -I/usr/include -Ilibs/mlx_linux -O3 -c $< -o $@
+	@mkdir -p $(OBJSDIR)
+	@$(CC) $(CLFAGS) $(INCL) $(MLX_INC) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
-	@$(CC) $(CFLAGS) $^ -Llibs/mlx_linux -lmlx_Linux -L/usr/lib -Ilibs/mlx_linux -lXext -lX11 -lm -lz -o $@
+	@$(CC) $(CFLAGS) $^ $(MLX_FLG) -o $@
 	@echo "$(GREEN)--->./$@ is ready$(DEFAULT)"
 
 $(MLX):
-	@make -C libs/mlx_linux
+	@make -C libs/mlx_mac
+	#@make -C libs/mlx_linux
 
 $(LIBFT):
 	@make -C libs/libft
