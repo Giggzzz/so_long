@@ -6,8 +6,15 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:36 by gudias            #+#    #+#             */
-/*   Updated: 2022/03/30 01:39:37 by gudias           ###   ########.fr       */
+/*   Updated: 2022/03/30 13:26:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
 
+void	exit_msg(char *msg)
+{
+	ft_putstr("Error: ");
+	ft_putendl(msg);
+	exit (1);
+}

@@ -6,29 +6,14 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/03/30 01:11:13 by gudias           ###   ########.fr       */
+/*   Updated: 2022/03/30 13:38:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window(t_vars *vars)
+void	paint(t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	exit(0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_vars	vars;
-
-	vars.mlx = mlx_init();
-	if (!vars.mlx)
-		return (1);
-	vars.win = mlx_new_window(vars.mlx, 800, 600, "42 | so_long");
-	if (!vars.win)
-		return (1);
-	
 	int	x, y = 0;
 	while (y<=300)
 	{
@@ -36,22 +21,46 @@ int	main(int argc, char **argv)
 		while (x<400)
 		{
 			if (x>175 && x<225 && y>125 && y<175)
-				mlx_pixel_put(vars.mlx, vars.win, 200+x, 150+y, 0xFFFF00);
+				mlx_pixel_put(vars->mlx, vars->win, 200+x, 150+y, 0xFFFF00);
 			else if (x>100 && x<300 && y>75 && y<225)
-				mlx_pixel_put(vars.mlx, vars.win, 200+x, 150+y,0x00FF00);
+				mlx_pixel_put(vars->mlx, vars->win, 200+x, 150+y,0x00FF00);
 			else
-				mlx_pixel_put(vars.mlx, vars.win, 200+x, 150+y, 0xFF0000);
+				mlx_pixel_put(vars->mlx, vars->win, 200+x, 150+y, 0xFF0000);
 			x++;
 		}
 		y++;
 	}
-	//mlx_pixel_put(mlx, window, 5, 5, 0xFF0000);i
+}
 
-	mlx_key_hook(vars.win, key_input, &vars);
-	mlx_hook(vars.win, 17, 1L<<0, close_window, &vars);
+int	main(int argc, char **argv)
+{
+	t_vars	vars;
+
+	if (argc != 2)
+		exit_msg("bad arguments");
+
+	//check the map
+	
+	
+	//init window
+	vars.mlx = mlx_init();
+	if (!vars.mlx)
+		exit_msg("couldn't init mlx");
+	vars.win = mlx_new_window(vars.mlx, 800, 600, "42 | so_long");
+	if (!vars.win)
+		exit_msg("couldn't create window");
+	//load sprites in map
+	
+	paint(&vars);
+
+	//mlx_key_hook(vars.win, key_input, &vars);
+	mlx_hook(vars.win, 2, 0, key_input, &vars);
+	mlx_hook(vars.win, 17, 0, close_window, &vars);
 
 	mlx_loop(vars.mlx);
 	
+	return (0);
+}
 	//mlx_string_put(mlx, window, 50, 50, 0xFF0000, "HELLOOW");
 
 	//img = mlx_new_image(mlx, 50, 50);
@@ -78,5 +87,3 @@ int	main(int argc, char **argv)
 	//mlx_clear_window(mlx, window);
 	//mlx_destroy_window(mlx, window);
 
-	return (0);
-}

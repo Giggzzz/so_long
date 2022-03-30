@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/03/30 01:11:57 by gudias           ###   ########.fr        #
+#    Updated: 2022/03/30 16:15:46 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,55 +25,62 @@ ifeq ($(OS),Darwin)
 	MLX		= libs/mlx_mac/libmlx.a
 	MLX_INC = -Ilibs/mlx_mac
 	MLX_FLG = -Llibs/mlx_mac -lmlx -framework OpenGL -framework AppKit
+	#CFLAGS += -D OS_DARWIN
 else ifeq ($(OS),Linux)
 	MLX_DIR	= libs/mlx_linux
 	MLX		= libs/mlx_linux/libmlx_Linux.a
 	MLX_INC	= -I/usr/include -Ilibs/mlx_linux -O3
 	MLX_FLG	= -Llibs/mlx_linux -lmlx_Linux -L/usr/lib -Ilibs/mlx_linux -lXext -lX11 -lm -lz
+	#CFLAGS += -D OS_LINUX
 endif
 
 SRCSDIR	= srcs
 OBJSDIR	= objs
 
-SRCS	= so_long.c events.c
+SRCS	= so_long.c events.c errors.c check_map.c
 
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
 	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
 	@mkdir -p $(OBJSDIR)
-	$(CC) $(CLFAGS) $(INCL) $(MLX_INC) -c $< -o $@
+	@$(CC) $(CLFAGS) $(INCL) $(MLX_INC) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
 	@echo "$(YELLOW)Creating executable..$(DEFAULT)"
-	$(CC) $(CFLAGS) $^ $(MLX_FLG) -o $@
-	@echo "$(GREEN)--->./$@ is ready$(DEFAULT)"
+	@$(CC) $(CFLAGS) $^ $(MLX_FLG) -o $@
+	@echo "$(GREEN)---> ./$@ is ready$(DEFAULT)"
 
 $(MLX):
-	@make -C $(MLX_DIR)
+	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
+	@make -C $(MLX_DIR) 2>/dev/null
+	@echo "$(GREEN)---> MiniLibX ready$(DEFAULT)"
 
 $(LIBFT):
+	@echo "$(YELLOW)Preparing libft..$(DEFAULT)"
 	@make -C libs/libft
 
 clean:
 	@$(RM) -r $(OBJSDIR)
-	@make clean -C libs/libft
-	#@make clean -C $(MLX_DIR)
-	@echo "$(RED)!! Object files deleted !!$(DEFAULT)"
+	@echo "$(RED)!! Removed objs/ !!$(DEFAULT)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	#@make fclean -C libs/libft
-	#@make clean -C $(MLX_DIR)
-	@echo "$(RED)!! ./$(NAME) deleted !!$(DEFAULT)"
+	@echo "$(RED)!! Removed ./$(NAME) !!$(DEFAULT)"
 
 bonus: re
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+fullclear: fclean
+	@make fclean -C libs/libft
+	@make clean -C $(MLX_DIR)
+	@echo "$(RED)!! Removed MiniLibX !!$(DEFAULT)"
+
+
+.PHONY: all clean fclean re bonus fullclear
 
 #COLORS
 RED = \033[1;31m
