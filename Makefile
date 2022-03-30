@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/03/30 16:15:46 by gudias           ###   ########.fr        #
+#    Updated: 2022/03/30 16:32:38 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS	= so_long.c events.c errors.c check_map.c
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
-	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
+	@echo "$(CYAN)Compiling $(DEFAULT)$<"
 	@mkdir -p $(OBJSDIR)
 	@$(CC) $(CLFAGS) $(INCL) $(MLX_INC) -c $< -o $@
 
@@ -86,4 +86,5 @@ fullclear: fclean
 RED = \033[1;31m
 GREEN = \033[1;32m
 YELLOW = \033[1;33m
+CYAN = \033[1;36m
 DEFAULT = \033[0m
