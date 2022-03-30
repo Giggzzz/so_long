@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/03/30 16:32:38 by gudias           ###   ########.fr        #
+#    Updated: 2022/03/30 20:21:19 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS	= so_long.c events.c errors.c check_map.c
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
-	@echo "$(CYAN)Compiling $(DEFAULT)$<"
+	@echo "$(YELLOW)Compiling $(DEFAULT)$<"
 	@mkdir -p $(OBJSDIR)
 	@$(CC) $(CLFAGS) $(INCL) $(MLX_INC) -c $< -o $@
 
@@ -55,32 +55,35 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 
 $(MLX):
 	@echo "$(YELLOW)Preparing MiniLibX..$(DEFAULT)"
-	@make -C $(MLX_DIR) 2>/dev/null
-	@echo "$(GREEN)---> MiniLibX ready$(DEFAULT)"
+	@make -C $(MLX_DIR) 1>/dev/null 2>/dev/null
+	@echo "$(CYAN)---> MiniLibX ready$(DEFAULT)"
 
 $(LIBFT):
-	@echo "$(YELLOW)Preparing libft..$(DEFAULT)"
-	@make -C libs/libft
+	@echo "$(YELLOW)Preparing Libft..$(DEFAULT)"
+	@make -C libs/libft 1>/dev/null 2>/dev/null
+	@echo "$(CYAN)---> Libft ready$(DEFAULT)"
 
 clean:
 	@$(RM) -r $(OBJSDIR)
-	@echo "$(RED)!! Removed objs/ !!$(DEFAULT)"
+	@echo "$(RED)Removed $(CYAN)objs/$(DEFAULT)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)!! Removed ./$(NAME) !!$(DEFAULT)"
+	@echo "$(RED)Removed $(CYAN)./$(NAME)$(DEFAULT)"
+
+libclean: 
+	@make fclean -C libs/libft 1>/dev/null 2>/dev/null
+	@echo "$(RED)Removed $(CYAN)Libft$(DEFAULT)"
+	@make clean -C $(MLX_DIR) 1>/dev/null 2>/dev/null
+	@echo "$(RED)Removed $(CYAN)MiniLibX$(DEFAULT)"
+
+fullclean: fclean libclean
 
 bonus: re
 
 re: fclean all
 
-fullclear: fclean
-	@make fclean -C libs/libft
-	@make clean -C $(MLX_DIR)
-	@echo "$(RED)!! Removed MiniLibX !!$(DEFAULT)"
-
-
-.PHONY: all clean fclean re bonus fullclear
+.PHONY: all clean fclean re bonus libclean fullclean
 
 #COLORS
 RED = \033[1;31m
