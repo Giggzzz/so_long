@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/03/30 13:38:33 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/01 03:13:01 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,18 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_msg("bad arguments");
-
-	//check the map
 	
+	vars.player_pos_x = -1;
+	vars.exit_pos_x = -1;
+	vars.coinleft = 0;
+	vars.movecount = 0;
+	vars.map = readcheck_map(argv[1], &vars);
 	
-	//init window
+	int i = -1;
+	while (++i < vars.map_h)
+	{
+		ft_putstr(vars.map[i]);
+	}
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		exit_msg("couldn't init mlx");

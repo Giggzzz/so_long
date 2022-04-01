@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:36 by gudias            #+#    #+#             */
-/*   Updated: 2022/03/30 13:26:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/01 03:46:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	exit_msg(char *msg)
 {
-	ft_putstr("Error: ");
-	ft_putendl(msg);
-	exit (1);
+	ft_putendl_fd("Error", 2);
+	ft_putendl_fd(msg, 2);
+	//free
+	
+	exit (0);
 }
+
+//should free all before exit..
