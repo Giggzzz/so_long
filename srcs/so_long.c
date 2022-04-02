@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/01 03:13:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/02 01:30:11 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ int	main(int argc, char **argv)
 	vars.mlx = mlx_init();
 	if (!vars.mlx)
 		exit_msg("couldn't init mlx");
-	vars.win = mlx_new_window(vars.mlx, 800, 600, "42 | so_long");
+	vars.win = mlx_new_window(vars.mlx, vars.map_w*50, vars.map_h*50, "42 | so_long");
 	if (!vars.win)
 		exit_msg("couldn't create window");
 	//load sprites in map
-	
-	paint(&vars);
+	draw_map(&vars);
+	//paint(&vars);
 
-	//mlx_key_hook(vars.win, key_input, &vars);
-	mlx_hook(vars.win, 2, 0, key_input, &vars);
+	mlx_key_hook(vars.win, key_input, &vars);
+	//mlx_hook(vars.win, 2, 0, key_input, &vars);
 	mlx_hook(vars.win, 17, 0, close_window, &vars);
 
 	mlx_loop(vars.mlx);

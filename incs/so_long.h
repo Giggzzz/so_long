@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/01 02:57:05 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/02 00:51:04 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct	s_vars
 
 
 char	**readcheck_map(char *mapname, t_vars *vars);
-
+void	draw_map(t_vars *vars);
 void	exit_msg(char *msg);
 int		key_input(int keycode, t_vars *vars);
 int		close_window(t_vars *vars);
