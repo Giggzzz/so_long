@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:23 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/01 04:43:20 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:32:09 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ static void	check_line_data(char *line, t_vars *vars)
 				exit_msg("more than 1 player");	
 			vars->player_pos_x = i;
 			vars->player_pos_y = vars->map_h;
+			line[i] = '0';
 		}
 		else if (line[i] == 'E')
 		{
@@ -85,7 +86,7 @@ static void	check_line_data(char *line, t_vars *vars)
 			vars->exit_pos_x = i;
 			vars->exit_pos_y = vars->map_h;	
 		}
-		else if (line[i] != '0' && line[i] != '1')
+		else if (line[i] != '0' && line[i] != '1' && line[i] != 'X')
 			exit_msg("invalid character in map");
 	}	
 }

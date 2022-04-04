@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/02 01:25:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:32:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,25 @@ static void	draw_square(t_vars *vars, int x, int y, int color)
 	}
 }
 
+void	refresh_score(t_vars *vars)
+{
+	char	*moves;
+	char	*coins;
+
+	draw_tile(vars, 2, 0);
+	moves = ft_itoa(vars->movecount);
+	coins = ft_itoa(vars->coinleft);
+	mlx_string_put(vars->mlx, vars->win, 100, 20, 0xFF0000, moves);
+	mlx_string_put(vars->mlx, vars->win, 100, 40, 0xFFFF00, coins);
+	free(moves);
+	free(coins);
+}
+
+void	draw_player(t_vars *vars)
+{
+	draw_square(vars, vars->player_pos_x, vars->player_pos_y, 0x00FF00);
+}
+
 void	draw_tile(t_vars *vars, int x, int y)
 {
 	if (vars->map[y][x] == '1')
@@ -38,10 +57,12 @@ void	draw_tile(t_vars *vars, int x, int y)
 		draw_square(vars, x, y, 0xF0F0F0);
 	else if (vars->map[y][x] == 'C')
 		draw_square(vars, x, y, 0xFFFF00);
+	else if (vars->map[y][x] == 'L')
+		draw_square(vars, x, y, 0xC3C3C3);
 	else if (vars->map[y][x] == 'E')
 		draw_square(vars, x, y, 0x0000FF);
-	else if (vars->map[y][x] == 'P')
-		draw_square(vars, x, y, 0x00FF00);
+	else if (vars->map[y][x] == 'X')
+		draw_square(vars, x, y, 0xFF0000);
 }
 
 void	draw_map(t_vars *vars)
@@ -60,4 +81,8 @@ void	draw_map(t_vars *vars)
 		}
 		y++;
 	}
+	draw_player(vars);
+	mlx_string_put(vars->mlx, vars->win, 50, 20, 0xFF0000, "Moves: ");
+	mlx_string_put(vars->mlx, vars->win, 50, 40, 0xFFFF00, "Coins: ");
+	refresh_score(vars);
 }

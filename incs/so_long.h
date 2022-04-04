@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/02 00:51:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/04 18:20:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ typedef struct	s_vars
 	int	movecount;
 }		t_vars;
 
-
-char	**readcheck_map(char *mapname, t_vars *vars);
+void	move_player(t_vars *vars, int key);
 void	draw_map(t_vars *vars);
+void	draw_tile(t_vars *vars, int x, int y);
+void	draw_player(t_vars *vars);
+void	refresh_score(t_vars *vars);
+char	**readcheck_map(char *mapname, t_vars *vars);
 void	exit_msg(char *msg);
+void	exit_win(t_vars *vars);
+void	exit_loose(t_vars *vars);
 int		key_input(int keycode, t_vars *vars);
 int		close_window(t_vars *vars);
 
