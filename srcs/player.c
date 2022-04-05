@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 10:54:11 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/04 18:20:19 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/05 10:34:06 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	move_player(t_vars *vars, int key)
 		vars->player_pos_x--;
 	else if (key == RIGHT)
 		vars->player_pos_x++;
+	draw_player(vars);
 	if (vars->map[vars->player_pos_y][vars->player_pos_x] == 'C')
 	{
 		vars->map[vars->player_pos_y][vars->player_pos_x] = 'L';
@@ -43,7 +44,5 @@ void	move_player(t_vars *vars, int key)
 	else if (vars->map[vars->player_pos_y][vars->player_pos_x] == 'X')
 		exit_loose(vars);
 
-	//vars->map[vars->player_pos_y][vars->player_pos_x] = 'P';
-	draw_player(vars);
 	refresh_score(vars);
 }

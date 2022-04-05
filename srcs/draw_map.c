@@ -6,28 +6,40 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/04 18:32:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:25:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int*)dst = color;
+}
+		
 static void	draw_square(t_vars *vars, int x, int y, int color)
 {
 	int	i;
 	int	j;
-	
+	t_img	img;
+
+	img.img = mlx_new_image(vars->mlx, 50, 50);	
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
 	j = 0;
 	while (j < 50)
 	{
 		i = 0;
 		while (i < 50)
 		{
-			mlx_pixel_put(vars->mlx, vars->win, (x*50) + i, (y*50) + j, color);
+			my_mlx_pixel_put(&img, i, j, color);
 			i++;
 		}
 		j++;
 	}
+	mlx_put_image_to_window(vars->mlx, vars->win, img.img, x*50, y*50);
 }
 
 void	refresh_score(t_vars *vars)

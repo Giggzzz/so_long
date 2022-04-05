@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/04 18:20:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/05 13:28:07 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ typedef struct	s_pos
 	int	y;
 }		t_pos;
 
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}				t_img;
+
 typedef struct	s_vars
 {
 	void	*mlx;
@@ -51,6 +59,7 @@ typedef struct	s_vars
 	int	movecount;
 }		t_vars;
 
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void	move_player(t_vars *vars, int key);
 void	draw_map(t_vars *vars);
 void	draw_tile(t_vars *vars, int x, int y);
