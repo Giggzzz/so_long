@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/04 18:32:12 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/06 16:40:31 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	key_input(int keycode, t_vars *vars)
 		move_player(vars, keycode);
 	else if (keycode == RIGHT && move_is_valid(vars, vars->player_pos_x + 1, vars->player_pos_y))
 		move_player(vars, keycode);
-	//else
-	//	ft_printf("bad input: %d\n", keycode);
+	else
+		ft_printf("bad input: %d\n", keycode);
 	return (0);
 }
 

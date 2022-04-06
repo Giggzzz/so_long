@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/05 18:07:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/06 18:27:52 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@ int	main(int argc, char **argv)
 
 	draw_map(&vars);
 
-	void *img;
-	char *path = "./assets/sprites/ground.xpm";
+	/*void *img;
+	char *path = "./assets/sprites/wall50.xpm";
 	int	width;
 	int	height;
 
 	img = mlx_xpm_file_to_image(vars.mlx, path, &width, &height);
-	mlx_put_image_to_window(vars.mlx, vars.win, img, 50, 50);
-	//mlx_key_hook(vars.win, key_input, &vars);
-	mlx_hook(vars.win, 2, 0, key_input, &vars);
+	mlx_put_image_to_window(vars.mlx, vars.win, img, 50, 0);
+	mlx_put_image_to_window(vars.mlx, vars.win, img, 0, 0);*/
+	mlx_key_hook(vars.win, key_input, &vars);
+	//mlx_hook(vars.win, 2, 0, key_input, &vars);
 	mlx_hook(vars.win, 17, 0, close_window, &vars);
-
+	//mlx_destroy_image(vars.mlx, img);
 	mlx_loop(vars.mlx);
 	return (0);
 }
