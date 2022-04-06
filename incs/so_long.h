@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/05 13:28:07 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/07 00:41:29 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #  define DOWN 115
 #  define LEFT 97
 #  define RIGHT 100
+#  define ESCAPE 65307
 # elif defined(__APPLE__)
 #  define UP 13
 #  define DOWN 1
