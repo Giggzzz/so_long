@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/07 00:41:29 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/07 19:35:36 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <fcntl.h>
 
 # define MAPSDIR "./assets/maps"
+# define TILESIZE 50
+# define WALL "./assets/sprites/wallmid50.xpm"
+# define GROUND "./assets/sprites/ground50.xpm"
+# define COIN "./assets/sprites/diamond50.xpm"
+# define LOOTED "./assets/sprites/grass50.xpm"
+# define EXIT "./assets/sprites/beer50.xpm"
+# define ENNEMY "./assets/sprites/skull50.xpm"
+# define PLAYER "./assets/sprites/helmet50.xpm"
 
 # if defined(__linux__)
 #  define UP 119
@@ -29,6 +37,7 @@
 #  define DOWN 1
 #  define LEFT 0
 #  define RIGHT 2
+#  define ESCAPE 53
 # endif
 
 typedef struct	s_pos
@@ -37,40 +46,31 @@ typedef struct	s_pos
 	int	y;
 }		t_pos;
 
-typedef struct	s_img {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}				t_img;
 
-typedef struct	s_vars
+typedef struct	s_game
 {
 	void	*mlx;
 	void	*win;
 	char	**map;
 	int	map_w;
 	int	map_h;
-	int	player_pos_x;
-	int	player_pos_y;
-	int	exit_pos_x;
-	int	exit_pos_y;
+	int	player_x;
+	int	player_y;
+	int	exit;
 	int	coinleft;
 	int	movecount;
-}		t_vars;
+}		t_game;
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
-void	move_player(t_vars *vars, int key);
-void	draw_map(t_vars *vars);
-void	draw_tile(t_vars *vars, int x, int y);
-void	draw_player(t_vars *vars);
-void	refresh_score(t_vars *vars);
-char	**readcheck_map(char *mapname, t_vars *vars);
+void	move_player(t_game *game, int key);
+void	draw_map(t_game *game);
+void	draw_tile(t_game *game, int x, int y);
+void	draw_player(t_game *game);
+void	refresh_score(t_game *game);
+char	**readcheck_map(char *mapname, t_game *game);
 void	exit_msg(char *msg);
-void	exit_win(t_vars *vars);
-void	exit_loose(t_vars *vars);
-int		key_input(int keycode, t_vars *vars);
-int		close_window(t_vars *vars);
+void	exit_win(t_game *game);
+void	exit_loose(t_game *game);
+int		key_input(int keycode, t_game *game);
+int		close_window(t_game *game);
 
 #endif

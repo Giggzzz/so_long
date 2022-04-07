@@ -6,74 +6,43 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/06 18:27:52 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/07 19:34:47 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+static void	init_game_vars(t_game *game)
+{	
+	game->player_x = -1;
+	game->exit = 0;
+	game->coinleft = 0;
+	game->movecount = 0;
+}
+
 int	main(int argc, char **argv)
 {
-	t_vars	vars;
+	t_game	game;
 
 	if (argc != 2)
 		exit_msg("bad arguments");
-	
-	vars.player_pos_x = -1;
-	vars.exit_pos_x = -1;
-	vars.coinleft = 0;
-	vars.movecount = 0;
-
-	vars.map = readcheck_map(argv[1], &vars);
-	
-	int i = -1;
-	while (++i < vars.map_h)
-		ft_putstr(vars.map[i]);
-
-	vars.mlx = mlx_init();
-	if (!vars.mlx)
+	init_game_vars(&game);
+	game.map = readcheck_map(argv[1], &game);
+	game.mlx = mlx_init();
+	if (!game.mlx)
 		exit_msg("couldn't init mlx");
-	vars.win = mlx_new_window(vars.mlx, vars.map_w*50, vars.map_h*50, "42 | so_long");
-	if (!vars.win)
+	game.win = mlx_new_window(game.mlx, game.map_w*TILESIZE, game.map_h*TILESIZE, "42 | so_long");
+	if (!game.win)
 		exit_msg("couldn't create window");
-
-	draw_map(&vars);
-
-	/*void *img;
-	char *path = "./assets/sprites/wall50.xpm";
-	int	width;
-	int	height;
-
-	img = mlx_xpm_file_to_image(vars.mlx, path, &width, &height);
-	mlx_put_image_to_window(vars.mlx, vars.win, img, 50, 0);
-	mlx_put_image_to_window(vars.mlx, vars.win, img, 0, 0);*/
-	mlx_key_hook(vars.win, key_input, &vars);
-	//mlx_hook(vars.win, 2, 0, key_input, &vars);
-	mlx_hook(vars.win, 17, 0, close_window, &vars);
-	//mlx_destroy_image(vars.mlx, img);
-	mlx_loop(vars.mlx);
+	draw_map(&game);
+	mlx_key_hook(game.win, key_input, &game);
+	//mlx_hook(game.win, 2, 0, key_input, &game);
+	mlx_hook(game.win, 17, 0, close_window, &game);
+	//int mlx_loop_hook(mlx, int (*fn)(), void *param);
+	mlx_loop(game.mlx);
 	return (0);
 }
 
-	//img = mlx_new_image(mlx, 50, 50);
-	//mlx_put_image_to_window(mlx, window, img, 20, 20);
-
-	//int pos = (y * sizeline + x * (bitperpixel /8);
-	//char *mlx_get_data_addr(img, int *bit_per_pixel, int *sizeline, int *endian);
-	//u int mlx_get_color_value(mlx, int color);
-
-	//img = mlx_xpm_to_image(mlx, char **xpm_data, w, h);
-
-	//char *path = "./img/test.xpm";
-	//int img_w;
-	//int img_h;
-	//img = mlx_xpm_file_to_image(mlx, path, &img_w, &img_h);
-	
-	//void	mlx_hook(window, int x_event, mask, int (*fn)(), *param);
-	//int mlx_key_hook(window, int(*fn)(), void *param);
-	//int mlx_mouse_hook(window, int (*fn)(), void *param);
-	//int mlx_expose_hook(window, int (*fn)(), void *param);
-	//int mlx_loop_hook(mlx, int (*fn)(), void *param);
 
 	//mlx_destroy_image(mlx, img);
 	//mlx_clear_window(mlx, window);

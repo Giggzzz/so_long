@@ -6,43 +6,41 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 10:54:11 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/05 10:34:06 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/07 19:11:15 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move_ennemy(t_vars *vars)
+void	move_ennemy(t_game *game)
 {
 	int	dx;
 	int	dy;
 
 }
 
-void	move_player(t_vars *vars, int key)
+void	move_player(t_game *game, int key)
 {
-	vars->movecount++;
-	//vars->map[vars->player_pos_y][vars->player_pos_x] = '0';
-	draw_tile(vars, vars->player_pos_x, vars->player_pos_y);
+	draw_tile(game, game->player_x, game->player_y);
 	if (key == UP)
-		vars->player_pos_y--;
+		game->player_y--;
 	else if (key == DOWN)
-		vars->player_pos_y++;
+		game->player_y++;
 	else if (key == LEFT)
-		vars->player_pos_x--;
+		game->player_x--;
 	else if (key == RIGHT)
-		vars->player_pos_x++;
-	draw_player(vars);
-	if (vars->map[vars->player_pos_y][vars->player_pos_x] == 'C')
+		game->player_x++;
+	draw_player(game);
+	game->movecount++;
+	if (game->map[game->player_y][game->player_x] == 'C')
 	{
-		vars->map[vars->player_pos_y][vars->player_pos_x] = 'L';
-		vars->coinleft--;
+		game->map[game->player_y][game->player_x] = '0';
+		game->coinleft--;
 	}
-	else if (vars->map[vars->player_pos_y][vars->player_pos_x] == 'E' && \
-			vars->coinleft == 0)
-		exit_win(vars);
-	else if (vars->map[vars->player_pos_y][vars->player_pos_x] == 'X')
-		exit_loose(vars);
-
-	refresh_score(vars);
+	else if (game->map[game->player_y][game->player_x] == 'E' && \
+			game->coinleft == 0)
+		exit_win(game);
+	else if (game->map[game->player_y][game->player_x] == 'X')
+		exit_loose(game);
+	refresh_score(game);
 }
