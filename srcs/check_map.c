@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:23 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/07 20:35:06 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/09 03:10:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,14 @@ static void	check_line_data(char *line, t_game *game)
 				exit_msg("more than 1 exit");
 			game->exit = 1;
 		}
-		else if (line[i] != '0' && line[i] != '1' && line[i] != 'X')
+		else if (line[i] == 'X')
+		{
+			if (game->enemy_x != -1)
+				exit_msg("only one enemy atm :/");
+			game->enemy_x = i;
+			game->enemy_y = game->map_h;
+		}
+		else if (line[i] != '0' && line[i] != '1')
 			exit_msg("invalid character in map");
 	}	
 }

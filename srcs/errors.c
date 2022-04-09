@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:36 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/07 19:10:54 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/09 03:37:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,8 @@ void	exit_loose(t_game *game)
 }
 
 //should free all before exit..
+
+
+	//mlx_destroy_image(mlx, img);
+	//mlx_clear_window(mlx, window);
+	//mlx_destroy_window(mlx, window);

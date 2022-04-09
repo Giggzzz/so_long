@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/07 19:35:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/09 01:34:11 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define MAPSDIR "./assets/maps"
 # define TILESIZE 50
+
 # define WALL "./assets/sprites/wallmid50.xpm"
 # define GROUND "./assets/sprites/ground50.xpm"
 # define COIN "./assets/sprites/diamond50.xpm"
@@ -56,6 +57,8 @@ typedef struct	s_game
 	int	map_h;
 	int	player_x;
 	int	player_y;
+	int	enemy_x;
+	int	enemy_y;
 	int	exit;
 	int	coinleft;
 	int	movecount;
