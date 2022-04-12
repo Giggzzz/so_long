@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/04/04 10:57:02 by gudias           ###   ########.fr        #
+#    Updated: 2022/04/11 13:44:07 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ endif
 SRCSDIR	= srcs
 OBJSDIR	= objs
 
-SRCS	= so_long.c events.c errors.c check_map.c draw_map.c player.c
+SRCS	= so_long.c events.c errors.c check_map.c draw_map.c player.c animations.c
 
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 

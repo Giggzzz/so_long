@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/09 03:37:17 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/11 18:00:11 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	main(int argc, char **argv)
 	if (!game.win)
 		exit_msg("couldn't create window");
 	draw_map(&game);
-	mlx_key_hook(game.win, key_input, &game);
-	//mlx_hook(game.win, 2, 0, key_input, &game);
+	//mlx_key_hook(game.win, key_input, &game);
+	mlx_hook(game.win, 2, 0, key_input, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
-	//int mlx_loop_hook(mlx, int (*fn)(), void *param);
+	mlx_loop_hook(game.mlx, update_frame, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

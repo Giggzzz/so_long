@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/07 19:11:01 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/11 17:00:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,34 @@ static int	valid_move(t_game *game, int newpos_x, int newpos_y)
 
 int	key_input(int keycode, t_game *game)
 {
-	//if (keycode == UP && \
+	//if (keycode == K_UP && \
 	game->map[game->player_y - 1][game->player_x] != '1')
-	if (keycode == UP && \
+	if (keycode == K_UP && \
 	valid_move(game, game->player_x, game->player_y - 1))
 		move_player(game, keycode);
-	else if (keycode == DOWN && \
+	else if (keycode == K_DOWN && \
 	valid_move(game, game->player_x, game->player_y + 1))
 		move_player(game, keycode);
-	else if (keycode == LEFT && \
+	else if (keycode == K_LEFT && \
 	valid_move(game, game->player_x - 1, game->player_y))
 		move_player(game, keycode);
-	else if (keycode == RIGHT && \
+	else if (keycode == K_RIGHT && \
 	valid_move(game, game->player_x + 1, game->player_y))
 		move_player(game, keycode);
-	else if (keycode == ESCAPE)
+	else if (keycode == K_ESC)
 		close_window(game);
 	else
 		ft_printf("bad input: %d\n", keycode);
+	return (0);
+}
+
+int	update_frame(t_game *game)
+{
+	static int	i = 0;
+
+	i++;
+	ft_printf("%d\n",i);
+	mlx_pixel_put(game->mlx, game->win, 100, 100, i);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 10:54:11 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/09 03:30:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/11 14:13:58 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	move_ennemy(t_game *game)
 void	move_player(t_game *game, int key)
 {
 	draw_tile(game, game->player_x, game->player_y);
-	if (key == UP)
+	if (key == K_UP)
 		game->player_y--;
-	else if (key == DOWN)
+	else if (key == K_DOWN)
 		game->player_y++;
-	else if (key == LEFT)
+	else if (key == K_LEFT)
 		game->player_x--;
-	else if (key == RIGHT)
+	else if (key == K_RIGHT)
 		game->player_x++;
 	draw_player(game);
 	game->movecount++;

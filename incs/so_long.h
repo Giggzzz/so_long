@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/09 01:34:11 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/11 15:10:22 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@
 # define PLAYER "./assets/sprites/helmet50.xpm"
 
 # if defined(__linux__)
-#  define UP 119
-#  define DOWN 115
-#  define LEFT 97
-#  define RIGHT 100
-#  define ESCAPE 65307
+#  define K_UP 119
+#  define K_DOWN 115
+#  define K_LEFT 97
+#  define K_RIGHT 100
+#  define K_ESC 65307
 # elif defined(__APPLE__)
-#  define UP 13
-#  define DOWN 1
-#  define LEFT 0
-#  define RIGHT 2
-#  define ESCAPE 53
+#  define K_UP 13
+#  define K_DOWN 1
+#  define K_LEFT 0
+#  define K_RIGHT 2
+#  define K_ESC 53
 # endif
 
 typedef struct	s_pos
@@ -74,6 +74,7 @@ void	exit_msg(char *msg);
 void	exit_win(t_game *game);
 void	exit_loose(t_game *game);
 int		key_input(int keycode, t_game *game);
+int		update_frame(t_game *game);
 int		close_window(t_game *game);
 
 #endif
