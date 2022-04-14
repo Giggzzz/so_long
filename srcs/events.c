@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/11 17:00:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/14 18:25:20 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ int	key_input(int keycode, t_game *game)
 
 int	update_frame(t_game *game)
 {
-	static int	i = 0;
+	static int	frame = 0;
+	int		freq = 5000;
 
-	i++;
-	ft_printf("%d\n",i);
-	mlx_pixel_put(game->mlx, game->win, 100, 100, i);
+	if (frame == freq)
+		frame = 0;
+	if (frame == 0)
+		ft_printf("tick\n");
+	frame++;
+	mlx_pixel_put(game->mlx, game->win, 100, 100, frame);
 	return (0);
 }
 
