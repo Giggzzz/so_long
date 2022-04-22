@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/11 14:08:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/22 19:12:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 static void	draw_image(t_game *game, int x, int y, char *path)
 {
 	void	*img;
-	int	width;
-	int	height;
+	int		width;
+	int		height;
 
 	img = mlx_xpm_file_to_image(game->mlx, path, &width, &height);
 	if (!img)
-		exit_msg("couldn't load sprite");
-	mlx_put_image_to_window(game->mlx, game->win, img, x*TILESIZE, y*TILESIZE);
+		exit_msg(game, "couldn't load sprite");
+	mlx_put_image_to_window(game->mlx, game->win, img,
+		x * TILESIZE, y * TILESIZE);
 	mlx_destroy_image(game->mlx, img);
 }
 
@@ -35,13 +36,14 @@ void	refresh_score(t_game *game)
 	coins = ft_itoa(game->coinleft);
 	mlx_string_put(game->mlx, game->win, 100, 20, 0xFF0000, moves);
 	mlx_string_put(game->mlx, game->win, 100, 40, 0xFFFF00, coins);
+	ft_printf("Move count: %d\n", game->movecount);
 	free(moves);
 	free(coins);
 }
 
 void	draw_player(t_game *game)
 {
-		draw_image(game, game->player_x, game->player_y, PLAYER);
+	draw_image(game, game->player_x, game->player_y, PLAYER);
 }
 
 void	draw_tile(t_game *game, int x, int y)

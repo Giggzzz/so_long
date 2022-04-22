@@ -6,7 +6,7 @@
 #    By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/27 17:27:19 by gudias            #+#    #+#              #
-#    Updated: 2022/04/11 13:44:07 by gudias           ###   ########.fr        #
+#    Updated: 2022/04/22 20:49:16 by gudias           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,18 @@ ifeq ($(OS),Darwin)
 	MLX		= libs/mlx_mac/libmlx.a
 	MLX_INC = -Ilibs/mlx_mac
 	MLX_FLG = -Llibs/mlx_mac -lmlx -framework OpenGL -framework AppKit
-	#CFLAGS += -D OS_DARWIN
 else ifeq ($(OS),Linux)
 	MLX_DIR	= libs/mlx_linux
 	MLX		= libs/mlx_linux/libmlx_Linux.a
 	MLX_INC	= -I/usr/include -Ilibs/mlx_linux -O3
 	MLX_FLG	= -Llibs/mlx_linux -lmlx_Linux -L/usr/lib -Ilibs/mlx_linux -lXext -lX11 -lm -lz
-	#CFLAGS += -D OS_LINUX
 endif
 
 SRCSDIR	= srcs
 OBJSDIR	= objs
 
-SRCS	= so_long.c events.c errors.c check_map.c draw_map.c player.c animations.c
+SRCS	= so_long.c events.c errors.c check_map.c draw_map.c player.c \
+	  animations.c get_map.c enemy.c
 
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
 

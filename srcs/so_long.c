@@ -6,19 +6,38 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/14 18:39:09 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/22 19:54:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	init_game_vars(t_game *game)
+static void	init_game_vars(t_game *game, char *mapname)
 {	
+	game->mlx = NULL;
+	game->win = NULL;
+	game->map = NULL;
 	game->player_x = -1;
 	game->enemy_x = -1;
 	game->exit = 0;
 	game->coinleft = 0;
 	game->movecount = 0;
+	game->end = 0;
+	game->map = get_map(mapname, game);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		exit_msg(game, "couldn't init mlx");
+	game->win = mlx_new_window(game->mlx, game->map_w * TILESIZE,
+			game->map_h * TILESIZE, "42 | so_long");
+	if (!game->win)
+		exit_msg(game, "couldn't create window");
+}
+
+static void	init_hooks(t_game *game)
+{
+	mlx_hook(game->win, 2, 1L << 0, key_input, game);
+	mlx_hook(game->win, 17, 0L << 0, close_window, game);
+	mlx_loop_hook(game->mlx, update_frame, game);
 }
 
 int	main(int argc, char **argv)
@@ -26,21 +45,13 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	if (argc != 2)
-		exit_msg("bad arguments");
-	init_game_vars(&game);
-	game.map = readcheck_map(argv[1], &game);
-	game.mlx = mlx_init();
-	if (!game.mlx)
-		exit_msg("couldn't init mlx");
-	game.win = mlx_new_window(game.mlx, \
-		game.map_w*TILESIZE, game.map_h*TILESIZE, "42 | so_long");
-	if (!game.win)
-		exit_msg("couldn't create window");
+	{
+		ft_putendl("Error\ninvalid arguments");
+		return (0);
+	}
+	init_game_vars(&game, argv[1]);
 	draw_map(&game);
-	//mlx_key_hook(game.win, key_input, &game);
-	mlx_hook(game.win, 2, 1L << 0, key_input, &game);
-	mlx_hook(game.win, 17, 1L << 0, close_window, &game);
-	mlx_loop_hook(game.mlx, update_frame, &game);
+	init_hooks(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }
