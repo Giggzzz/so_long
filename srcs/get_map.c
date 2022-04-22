@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:19:38 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 19:39:23 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/22 23:30:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,22 @@ static void	get_first_line(int fd, t_game *game)
 	game->map[1] = NULL;
 }
 
-static void	get_line_data(char *line, t_game *game)
+void	get_line_data(char *line, int i, t_game *game)
 {
-	int	i;
-
-	i = 0;
-	while (++i < game->map_w - 1)
+	if (line[i] == 'C')
+		game->coinleft++;
+	else if (line[i] == 'P')
 	{
-		if (line[i] == 'C')
-			game->coinleft++;
-		else if (line[i] == 'P')
-		{
-			game->player_x = i;
-			game->player_y = game->map_h;
-			line[i] = '0';
-		}
-		else if (line[i] == 'E')
-			game->exit = 1;
-		else if (line[i] == 'X')
-		{
-			game->enemy_x = i;
-			game->enemy_y = game->map_h;
-		}
+		game->player_x = i;
+		game->player_y = game->map_h;
+		line[i] = '0';
+	}
+	else if (line[i] == 'E')
+		game->exit = 1;
+	else if (line[i] == 'X')
+	{
+		game->enemy_x = i;
+		game->enemy_y = game->map_h;
 	}
 }
 
@@ -71,7 +65,6 @@ static void	save_line(char *line, t_game *game)
 	int		i;
 	char	**tmp;
 
-	get_line_data(line, game);
 	tmp = game->map;
 	game->map = malloc(sizeof (char *) * (++(game->map_h) + 1));
 	if (!game->map)

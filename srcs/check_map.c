@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:39:23 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 19:14:48 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/22 23:30:33 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	check_line(char *line, t_game *game)
 			exit_msg(game, "only 1 enemy atm :/");
 		else if (!check_charset(line[i]))
 			exit_msg(game, "invalid character in map");
+		get_line_data(line, i, game);
 	}
 }
 

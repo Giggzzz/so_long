@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 20:42:09 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/23 00:11:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	draw_player(t_game *game);
 void	refresh_score(t_game *game);
 
 char	**get_map(char *mapname, t_game *game);
+void	get_line_data(char *line, int i, t_game *game);
 int		check_extension(char *mapname);
 int		check_walls(char *line);
 void	check_line(char *line, t_game *game);
