@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 10:54:11 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 18:34:14 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/23 12:54:16 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ static void	check_next_tile(t_game *game)
 
 static void	move_player(t_game *game, int new_x, int new_y)
 {
+	static char	*player_img = PLAYER_RIGHT;
+
 	draw_tile(game, game->player_x, game->player_y);
+	if (game->player_x < new_x)
+		player_img = PLAYER_RIGHT;
+	else if (game->player_x > new_x)
+		player_img = PLAYER_LEFT;
 	game->player_x = new_x;
 	game->player_y = new_y;
-	draw_player(game);
+	draw_player(game, player_img);
 	game->movecount++;
 	check_next_tile(game);
 	refresh_score(game);

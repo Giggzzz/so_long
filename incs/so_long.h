@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/23 00:11:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/23 12:47:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define COIN "./assets/sprites/diamond50.xpm"
 # define LOOTED "./assets/sprites/grass50.xpm"
 # define EXIT "./assets/sprites/beer50.xpm"
-# define ENNEMY "./assets/sprites/skull50.xpm"
-# define PLAYER "./assets/sprites/helmet50.xpm"
+# define ENEMY_LEFT "./assets/sprites/skull50.xpm"
+# define ENEMY_RIGHT "./assets/sprites/skull50.xpm"
+# define PLAYER_RIGHT "./assets/sprites/dwarf_right50.xpm"
+# define PLAYER_LEFT "./assets/sprites/dwarf_left50.xpm"
 
 # if defined(__linux__)
 #  define K_UP 119
@@ -69,7 +71,7 @@ void	move_enemy(t_game *game);
 
 void	draw_map(t_game *game);
 void	draw_tile(t_game *game, int x, int y);
-void	draw_player(t_game *game);
+void	draw_player(t_game *game, char *img);
 void	refresh_score(t_game *game);
 
 char	**get_map(char *mapname, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 19:12:03 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/23 12:46:55 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	refresh_score(t_game *game)
 	free(coins);
 }
 
-void	draw_player(t_game *game)
+void	draw_player(t_game *game, char *img)
 {
-	draw_image(game, game->player_x, game->player_y, PLAYER);
+	draw_image(game, game->player_x, game->player_y, img);
 }
 
 void	draw_tile(t_game *game, int x, int y)
@@ -60,7 +60,7 @@ void	draw_tile(t_game *game, int x, int y)
 		else if (game->map[y][x] == 'E')
 			draw_image(game, x, y, EXIT);
 		else if (game->map[y][x] == 'X')
-			draw_image(game, x, y, ENNEMY);
+			draw_image(game, x, y, ENEMY_LEFT);
 	}
 }
 
@@ -80,7 +80,7 @@ void	draw_map(t_game *game)
 		}
 		y++;
 	}
-	draw_player(game);
+	draw_player(game, PLAYER_RIGHT);
 	mlx_string_put(game->mlx, game->win, 50, 20, 0xFF0000, "Moves: ");
 	mlx_string_put(game->mlx, game->win, 50, 40, 0xFFFF00, "Coins: ");
 	refresh_score(game);
