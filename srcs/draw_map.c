@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/23 12:46:55 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/25 02:01:46 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ void	refresh_score(t_game *game)
 	char	*coins;
 
 	draw_tile(game, 2, 0);
+	draw_tile(game, 4, 0);
 	moves = ft_itoa(game->movecount);
 	coins = ft_itoa(game->coinleft);
-	mlx_string_put(game->mlx, game->win, 100, 20, 0xFF0000, moves);
-	mlx_string_put(game->mlx, game->win, 100, 40, 0xFFFF00, coins);
+	mlx_string_put(game->mlx, game->win, 68, 20, 0xFF0000, moves);
+	mlx_string_put(game->mlx, game->win, 132, 20, 0xFFFF00, coins);
 	ft_printf("Move count: %d\n", game->movecount);
 	free(moves);
 	free(coins);
 }
 
-void	draw_player(t_game *game, char *img)
+void	draw_player(t_game *game)
 {
-	draw_image(game, game->player_x, game->player_y, img);
+	draw_image(game, game->player_x, game->player_y, game->player_img);
 }
 
 void	draw_tile(t_game *game, int x, int y)
@@ -60,7 +61,7 @@ void	draw_tile(t_game *game, int x, int y)
 		else if (game->map[y][x] == 'E')
 			draw_image(game, x, y, EXIT);
 		else if (game->map[y][x] == 'X')
-			draw_image(game, x, y, ENEMY_LEFT);
+			draw_image(game, x, y, game->enemy_img);
 	}
 }
 
@@ -80,8 +81,8 @@ void	draw_map(t_game *game)
 		}
 		y++;
 	}
-	draw_player(game, PLAYER_RIGHT);
-	mlx_string_put(game->mlx, game->win, 50, 20, 0xFF0000, "Moves: ");
-	mlx_string_put(game->mlx, game->win, 50, 40, 0xFFFF00, "Coins: ");
+	draw_player(game);
+	mlx_string_put(game->mlx, game->win, 32, 20, 0xFF0000, "Moves: ");
+	mlx_string_put(game->mlx, game->win, 96, 20, 0xFFFF00, "Coins: ");
 	refresh_score(game);
 }

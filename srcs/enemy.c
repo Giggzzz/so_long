@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 17:43:33 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 17:45:06 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/25 02:05:43 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ static void	calc_enemy_move(t_game *game)
 	int	x;
 	int	y;
 
+	game->enemy_dir = 1;
 	x = 1;
 	y = 1;
 	dx = game->player_x - game->enemy_x;
 	dy = game->player_y - game->enemy_y;
 	if (dx < 0)
+	{
 		x = -1;
+		game->enemy_dir = -1;
+	}
 	if (dy < 0)
 		y = -1;
 	if (ft_abs(dx) > ft_abs(dy) \

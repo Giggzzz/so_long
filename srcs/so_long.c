@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 19:54:42 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/25 02:01:25 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ static void	init_game_vars(t_game *game, char *mapname)
 	game->mlx = NULL;
 	game->win = NULL;
 	game->map = NULL;
+	game->player_img = PLAYER_RIGHT1;
+	game->player_dir = 1;
+	game->player_anim = 0;
+	game->enemy_img = PLAYER_RIGHT1;
+	game->enemy_dir = -1;
+	game->enemy_anim = 0;
 	game->player_x = -1;
 	game->enemy_x = -1;
 	game->exit = 0;

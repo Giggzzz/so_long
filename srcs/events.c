@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 20:40:47 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/25 02:23:04 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,19 @@ int	update_frame(t_game *game)
 		sleep(3);
 		close_game(game);
 	}
-	freq = 5000;
-	if (frame == freq)
+	freq = 1000;
+	if (frame == freq * 5)
 		frame = 0;
-	if (frame == 0)
-		ft_printf("tick\n");
+	if (!(frame % freq))
+	{
+		game->player_anim = frame / freq;
+		anim_player(game);
+		if (game->enemy_x != -1)
+		{
+			game->enemy_anim = frame / freq;
+			anim_enemy(game);
+		}
+	}
 	frame++;
 	return (0);
 }
