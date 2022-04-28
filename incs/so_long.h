@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/25 02:00:36 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/26 01:19:10 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define GROUND "./assets/sprites/def/ground.xpm"
 # define COIN "./assets/sprites/def/diamond.xpm"
 # define LOOTED "./assets/sprites/grass50.xpm"
-# define EXIT "./assets/sprites/def/beer.xpm"
+# define EXIT "./assets/sprites/exit1.xpm"
 # define PLAYER_RIGHT1 "./assets/sprites/def/dwarf_right1.xpm"
 # define PLAYER_RIGHT2 "./assets/sprites/def/dwarf_right2.xpm"
 # define PLAYER_RIGHT3 "./assets/sprites/def/dwarf_right3.xpm"
