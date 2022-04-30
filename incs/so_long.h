@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/26 01:19:10 by gudias           ###   ########.fr       */
+/*   Updated: 2022/04/30 19:55:08 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@
 # define WALL "./assets/sprites/def/wallmid.xpm"
 # define GROUND "./assets/sprites/def/ground.xpm"
 # define COIN "./assets/sprites/def/diamond.xpm"
-# define LOOTED "./assets/sprites/grass50.xpm"
-# define EXIT "./assets/sprites/exit1.xpm"
+# define LOOTED "./assets/sprites/def/ground.xpm"
+# define EXIT "./assets/sprites/def/exit1.xpm"
+# define EXIT2 "./assets/sprites/def/exit2.xpm"
+# define EXIT3 "./assets/sprites/def/exit3.xpm"
+# define EXIT4 "./assets/sprites/def/exit4.xpm"
+# define EXIT5 "./assets/sprites/def/exit5.xpm"
+# define EXIT6 "./assets/sprites/def/exit6.xpm"
 # define PLAYER_RIGHT1 "./assets/sprites/def/dwarf_right1.xpm"
 # define PLAYER_RIGHT2 "./assets/sprites/def/dwarf_right2.xpm"
 # define PLAYER_RIGHT3 "./assets/sprites/def/dwarf_right3.xpm"
