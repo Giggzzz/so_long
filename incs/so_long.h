@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/30 19:55:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/26 18:28:03 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ typedef struct s_game
 	void	*win;
 	char	**map;
 	char	*player_img;
-	int	player_dir;
-	int	player_anim;
+	int		player_dir;
+	int		player_anim;
 	char	*enemy_img;
-	int	enemy_dir;
-	int	enemy_anim;
+	int		enemy_dir;
+	int		enemy_anim;
 	int		map_w;
 	int		map_h;
 	int		player_x;
