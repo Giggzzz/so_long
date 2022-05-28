@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/25 02:23:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/27 21:04:40 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,14 @@ int	update_frame(t_game *game)
 	if (!(frame % freq))
 	{
 		game->player_anim = frame / freq;
-		anim_player(game);
+		anim_player_idle(game);
 		if (game->enemy_x != -1)
 		{
 			game->enemy_anim = frame / freq;
-			anim_enemy(game);
+			anim_enemy_idle(game);
 		}
+		if (game->coinleft == 0 && game->exit < 6)
+			anim_exit_open(game);
 	}
 	frame++;
 	return (0);

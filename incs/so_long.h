@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/30 19:55:08 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/28 03:03:18 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define EXIT4 "./assets/sprites/def/exit4.xpm"
 # define EXIT5 "./assets/sprites/def/exit5.xpm"
 # define EXIT6 "./assets/sprites/def/exit6.xpm"
-# define PLAYER_RIGHT1 "./assets/sprites/def/dwarf_right1.xpm"
-# define PLAYER_RIGHT2 "./assets/sprites/def/dwarf_right2.xpm"
-# define PLAYER_RIGHT3 "./assets/sprites/def/dwarf_right3.xpm"
-# define PLAYER_RIGHT4 "./assets/sprites/def/dwarf_right4.xpm"
-# define PLAYER_RIGHT5 "./assets/sprites/def/dwarf_right5.xpm"
+# define PLAYER_RIGHT1 "./assets/sprites/attack_right_111.xpm"
+# define PLAYER_RIGHT2 "./assets/sprites/attack_right_222.xpm"
+# define PLAYER_RIGHT3 "./assets/sprites/attack_right_333.xpm"
+# define PLAYER_RIGHT4 "./assets/sprites/attack_right_444.xpm"
+# define PLAYER_RIGHT5 "./assets/sprites/attack_right_555.xpm"
 # define PLAYER_LEFT1 "./assets/sprites/def/dwarf_left1.xpm"
 # define PLAYER_LEFT2 "./assets/sprites/def/dwarf_left2.xpm"
 # define PLAYER_LEFT3 "./assets/sprites/def/dwarf_left3.xpm"
@@ -86,6 +86,9 @@ typedef struct s_game
 	int		enemy_x;
 	int		enemy_y;
 	int		exit;
+	char	*exit_img;
+	int		exit_x;
+	int		exit_y;
 	int		coinleft;
 	int		movecount;
 	int		end;
@@ -109,9 +112,10 @@ void	check_map_is_valid(t_game *game);
 int		key_input(int key, t_game *game);
 int		update_frame(t_game *game);
 
-void	anim_player(t_game *game);
+void	anim_player_idle(t_game *game);
+void	anim_enemy_idle(t_game *game);
+void	anim_exit_open(t_game *game);
 void	change_player_direction(t_game *game);
-void	anim_enemy(t_game *game);
 
 void	exit_msg(t_game *game, char *msg);
 void	exit_win(t_game *game);

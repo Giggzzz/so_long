@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:48:31 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/25 02:01:25 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/27 18:54:27 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_game_vars(t_game *game, char *mapname)
 	game->player_x = -1;
 	game->enemy_x = -1;
 	game->exit = 0;
+	game->exit_img = EXIT;
 	game->coinleft = 0;
 	game->movecount = 0;
 	game->end = 0;
