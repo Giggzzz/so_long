@@ -6,21 +6,18 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 13:43:34 by gudias            #+#    #+#             */
-/*   Updated: 2022/05/28 02:23:04 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/31 00:40:42 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	animator(t_game *game)
-{
-		
-}
-
 void	anim_player_idle(t_game *game)
 {
+	game->player_anim++;
+	if (game->player_anim == 5)
+		game->player_anim = 0;
 	draw_tile(game, game->player_x, game->player_y);
-	draw_tile(game, game->player_x+1, game->player_y);
 	if (game->player_anim == 0 && game->player_dir == 1)
 		game->player_img = PLAYER_RIGHT1;
 	else if (game->player_anim == 0)
@@ -46,6 +43,9 @@ void	anim_player_idle(t_game *game)
 
 void	anim_enemy_idle(t_game *game)
 {
+	game->enemy_anim++;
+	if (game->enemy_anim == 4)
+		game->enemy_anim = 0;
 	draw_tile(game, game->enemy_x, game->enemy_y);
 	if (game->enemy_anim == 0 && game->enemy_dir == 1)
 		game->enemy_img = ENEMY_RIGHT1;

@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 01:46:07 by gudias            #+#    #+#             */
-/*   Updated: 2022/05/28 03:03:18 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/31 00:45:22 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define EXIT4 "./assets/sprites/def/exit4.xpm"
 # define EXIT5 "./assets/sprites/def/exit5.xpm"
 # define EXIT6 "./assets/sprites/def/exit6.xpm"
-# define PLAYER_RIGHT1 "./assets/sprites/attack_right_111.xpm"
-# define PLAYER_RIGHT2 "./assets/sprites/attack_right_222.xpm"
-# define PLAYER_RIGHT3 "./assets/sprites/attack_right_333.xpm"
-# define PLAYER_RIGHT4 "./assets/sprites/attack_right_444.xpm"
-# define PLAYER_RIGHT5 "./assets/sprites/attack_right_555.xpm"
+# define PLAYER_RIGHT1 "./assets/sprites/def/dwarf_right1.xpm"
+# define PLAYER_RIGHT2 "./assets/sprites/def/dwarf_right2.xpm"
+# define PLAYER_RIGHT3 "./assets/sprites/def/dwarf_right3.xpm"
+# define PLAYER_RIGHT4 "./assets/sprites/def/dwarf_right4.xpm"
+# define PLAYER_RIGHT5 "./assets/sprites/def/dwarf_right5.xpm"
 # define PLAYER_LEFT1 "./assets/sprites/def/dwarf_left1.xpm"
 # define PLAYER_LEFT2 "./assets/sprites/def/dwarf_left2.xpm"
 # define PLAYER_LEFT3 "./assets/sprites/def/dwarf_left3.xpm"
@@ -74,11 +74,11 @@ typedef struct s_game
 	void	*win;
 	char	**map;
 	char	*player_img;
-	int	player_dir;
-	int	player_anim;
+	int		player_dir;
+	int		player_anim;
 	char	*enemy_img;
-	int	enemy_dir;
-	int	enemy_anim;
+	int		enemy_dir;
+	int		enemy_anim;
 	int		map_w;
 	int		map_h;
 	int		player_x;
