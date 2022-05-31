@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 01:05:24 by gudias            #+#    #+#             */
-/*   Updated: 2022/05/31 00:41:43 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/31 18:20:05 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	update_frame(t_game *game)
 		close_game(game);
 	}
 	player_speed = 1000;
-	open_speed = 2000;
+	open_speed = 1500;
 	enemy_speed = 1500;
 	if (frame >= 99999999)
 		frame = 0;
