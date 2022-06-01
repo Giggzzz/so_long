@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/22 14:19:38 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/22 23:30:27 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/27 19:06:36 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ void	get_line_data(char *line, int i, t_game *game)
 		line[i] = '0';
 	}
 	else if (line[i] == 'E')
+	{
 		game->exit = 1;
+		game->exit_x = i;
+		game->exit_y = game->map_h;
+	}
 	else if (line[i] == 'X')
 	{
 		game->enemy_x = i;

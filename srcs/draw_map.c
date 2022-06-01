@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/04/25 02:01:46 by gudias           ###   ########.fr       */
+/*   Updated: 2022/05/31 19:02:32 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ void	draw_tile(t_game *game, int x, int y)
 		draw_image(game, x, y, GROUND);
 		if (game->map[y][x] == 'C')
 			draw_image(game, x, y, COIN);
-		else if (game->map[y][x] == 'L')
-			draw_image(game, x, y, LOOTED);
 		else if (game->map[y][x] == 'E')
-			draw_image(game, x, y, EXIT);
+			draw_image(game, x, y, game->exit_img);
 		else if (game->map[y][x] == 'X')
 			draw_image(game, x, y, game->enemy_img);
 	}
