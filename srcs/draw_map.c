@@ -6,7 +6,7 @@
 /*   By: gudias <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 00:13:21 by gudias            #+#    #+#             */
-/*   Updated: 2022/05/31 19:02:32 by gudias           ###   ########.fr       */
+/*   Updated: 2022/06/02 13:30:09 by gudias           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	refresh_score(t_game *game)
 	char	*moves;
 	char	*coins;
 
-	draw_tile(game, 2, 0);
-	draw_tile(game, 4, 0);
+	draw_tile(game, 3, 0);
+	draw_tile(game, 7, 0);
 	moves = ft_itoa(game->movecount);
 	coins = ft_itoa(game->coinleft);
-	mlx_string_put(game->mlx, game->win, 68, 20, 0xFF0000, moves);
-	mlx_string_put(game->mlx, game->win, 132, 20, 0xFFFF00, coins);
+	mlx_string_put(game->mlx, game->win, TILESIZE * 3, 20, 0xFF0000, moves);
+	mlx_string_put(game->mlx, game->win, TILESIZE * 7, 20, 0xFFFF00, coins);
 	ft_printf("Move count: %d\n", game->movecount);
 	free(moves);
 	free(coins);
@@ -80,7 +80,7 @@ void	draw_map(t_game *game)
 		y++;
 	}
 	draw_player(game);
-	mlx_string_put(game->mlx, game->win, 32, 20, 0xFF0000, "Moves: ");
-	mlx_string_put(game->mlx, game->win, 96, 20, 0xFFFF00, "Coins: ");
+	mlx_string_put(game->mlx, game->win, TILESIZE, 20, 0xFF0000, "Moves: ");
+	mlx_string_put(game->mlx, game->win, TILESIZE * 5, 20, 0xFFFF00, "Coins: ");
 	refresh_score(game);
 }
